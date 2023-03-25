@@ -39,8 +39,8 @@ else:
     print("Des erreurs ont été trouvées lors de l'exécution des tests :\n")
     print(result.stdout)
     print(result.stderr)
-    bad_commit = sys.argv[1]
-    good_commit = sys.argv[2]
+    good_commit = sys.argv[1]
+    bad_commit = subprocess.check_output(['git', 'log', '-1', '--pretty=format:%H', 'HEAD^']).decode('utf-8').strip()
     print('bad commit: %s' % bad_commit)
     print('good commit: %s' % good_commit)
     os. system('git bisect start *s %s' % (bad_commit, good_commit)) 

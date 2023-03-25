@@ -14,4 +14,4 @@ jobs:
       - name: Run tests 
       # ici github.sha est le dernier bon commit du push 
       # ici git log -1 --pretty=format:'%H' HEAD^ est le dernier commit avant le push
-        run: python myscript.py ${{ github.sha }} $(git log -1 --pretty=format:'%H' HEAD^)
+        run: python myscript.py ${{ github.sha }}
