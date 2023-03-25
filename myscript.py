@@ -47,27 +47,27 @@ else:
         exit(1)
     print('bad_commit: %s' % bad_commit)
     print('good_commit: %s' % good_commit)
-
+    print(subprocess.run(['git', 'bisect', 'start'],capture_output=True, text=True).stdout.strip())
     print(subprocess.run(['git', 'bisect', 'good', good_commit],capture_output=True, text=True).stdout.strip()) 
     print(subprocess.run(['git', 'bisect', 'bad', bad_commit],capture_output=True, text=True).stdout.strip()) 
     print(subprocess.run(['git', 'bisect', 'run', 'python', 'manage.py', 'test'],capture_output=True, text=True).stdout.strip())
-    
-    while(True):
-        result = subprocess.run(['python', 'manage.py', 'test'], capture_output=True, text=True)
-        this_commit = subprocess.run(['git', 'log', '-1', '--pretty=format:%H'], stdout=subprocess.PIPE).stdout.decode('utf-8').strip()
-        print('this_commit: %s' % this_commit)
-        if result.returncode == 0:
-            print('good')
-            r = subprocess.run(['git', 'bisect', 'good', this_commit],capture_output=True, text=True).stdout
-        else:
-            print('bad')
-            r = subprocess.run(['git', 'bisect', 'bad', this_commit],capture_output=True, text=True).stdout
-        print(r)
-        if r.find('is the first bad commit') != -1:
-            print('is the first bad commit')
-            bad_commit = r.split(' ')[1].strip()
-            print('bad_commit: %s' % bad_commit)
-            print(subprocess.run(['git', 'bisect', 'reset'],capture_output=True, text=True).stdout.strip())
-            exit(1)
+    exit(1)
+    # while(True):
+    #     result = subprocess.run(['python', 'manage.py', 'test'], capture_output=True, text=True)
+    #     this_commit = subprocess.run(['git', 'log', '-1', '--pretty=format:%H'], stdout=subprocess.PIPE).stdout.decode('utf-8').strip()
+    #     print('this_commit: %s' % this_commit)
+    #     if result.returncode == 0:
+    #         print('good')
+    #         r = subprocess.run(['git', 'bisect', 'good', this_commit],capture_output=True, text=True).stdout
+    #     else:
+    #         print('bad')
+    #         r = subprocess.run(['git', 'bisect', 'bad', this_commit],capture_output=True, text=True).stdout
+    #     print(r)
+    #     if r.find('is the first bad commit') != -1:
+    #         print('is the first bad commit')
+    #         bad_commit = r.split(' ')[1].strip()
+    #         print('bad_commit: %s' % bad_commit)
+    #         print(subprocess.run(['git', 'bisect', 'reset'],capture_output=True, text=True).stdout.strip())
+    #         exit(1)
 
 
