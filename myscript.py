@@ -39,8 +39,8 @@ else:
     print("Des erreurs ont été trouvées lors de l'exécution des tests :\n")
     print(result.stdout)
     print(result.stderr)
-    bad_commit = sys.argv [1]
-    good_commit = sys. argv [2]
+    bad_commit = sys.argv[1]
+    good_commit = sys.argv[2]
     print('bad commit: %s' % bad_commit)
     print('good commit: %s' % good_commit)
     os. system('git bisect start *s %s' % (bad_commit, good_commit)) 
