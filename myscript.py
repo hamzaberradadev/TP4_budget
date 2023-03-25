@@ -43,6 +43,6 @@ else:
     bad_commit = subprocess.run(['git', 'log', '-1', '--pretty=format:%H', 'HEAD^'], stdout=subprocess.PIPE).stdout.decode('utf-8').strip()
     print('bad commit: %s' % bad_commit)
     print('good commit: %s' % good_commit)
-    os. system('git bisect start *s %s' % (bad_commit, good_commit)) 
+    os. system('git bisect start %s %s' % (bad_commit, good_commit)) 
     os.system('git bisect run python manage.py test') 
     os.system('git bisect reset')
