@@ -51,6 +51,7 @@ else:
     print(subprocess.run(['git', 'bisect', 'good', good_commit],capture_output=True, text=True).stdout.strip()) 
     print(subprocess.run(['git', 'bisect', 'bad', bad_commit],capture_output=True, text=True).stdout.strip()) 
     print(subprocess.run(['git', 'bisect', 'run', 'python', 'manage.py', 'test'],capture_output=True, text=True).stdout.strip())
+
     exit(1)
     # while(True):
     #     result = subprocess.run(['python', 'manage.py', 'test'], capture_output=True, text=True)
