@@ -41,6 +41,8 @@ else:
     print(result.stderr)
     bad_commit = sys.argv [1]
     good_commit = sys. argv [2]
+    print('bad commit: %s' % bad_commit)
+    print('good commit: %s' % good_commit)
     os. system('git bisect start *s %s' % (bad_commit, good_commit)) 
     os.system('git bisect run python manage.py test') 
     os.system('git bisect reset')
