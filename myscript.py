@@ -40,7 +40,7 @@ else:
     print(result.stdout)
     print(result.stderr)
     good_commit = sys.argv[1]
-    bad_commit = subprocess.check_output(['git', 'log', '-1', '--pretty=format:%H', 'HEAD^']).decode('utf-8').strip()
+    bad_commit = subprocess.run(['git', 'log', '-1', '--pretty=format:%H', 'HEAD^'], stdout=subprocess.PIPE).stdout.decode('utf-8').strip()
     print('bad commit: %s' % bad_commit)
     print('good commit: %s' % good_commit)
     os. system('git bisect start *s %s' % (bad_commit, good_commit)) 
