@@ -42,6 +42,9 @@ else:
     print(result.stderr)
     bad_commit = subprocess.run(['git', 'log', '-1', '--pretty=format:%H'], stdout=subprocess.PIPE).stdout.decode('utf-8').strip()
     good_commit = subprocess.run(['git', 'log','--skip=19', '-n', '1', '--pretty=format:%H'], stdout=subprocess.PIPE).stdout.decode('utf-8').strip()
+    if(good_commit == bad_commit): 
+        print("Le commit %s est le premier commit à avoir introduit une erreur." % bad_commit)
+        exit(1)
     print('bad_commit: %s' % bad_commit)
     print('good_commit: %s' % good_commit)
 
